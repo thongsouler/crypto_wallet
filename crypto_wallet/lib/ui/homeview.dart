@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_wallet/net/api_method.dart';
+import 'package:crypto_wallet/net/flutterfire.dart';
 import 'package:crypto_wallet/ui/addView.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -58,15 +59,30 @@ class _HomeViewState extends State<HomeView> {
             }
             return ListView(
               children: snapshot.data!.docs.map((document) {
-                return Container(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text('Coin Name: ${document.id} '),
-                    Text(
-                        'Amount Owned: ${getValue(document.id, document.get('Amount'))}')
-                  ],
-                ));
+                return Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 80,
+                      decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Coin Name: ${document.id} '),
+                          Text(
+                              'Amount Owned: ${getValue(document.id, document.get('Amount'))}'),
+                          IconButton(
+                            icon: const Icon(Icons.remove_circle),
+                            color: Colors.red,
+                            onPressed: () async {
+                              await removeCoin(document.id);
+                            },
+                          )
+                        ],
+                      )),
+                );
               }).toList(),
             );
           },
