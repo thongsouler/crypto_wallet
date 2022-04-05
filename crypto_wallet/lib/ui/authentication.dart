@@ -20,8 +20,8 @@ class _AuthenticationState extends State<Authentication> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.blueAccent,
+        decoration: const BoxDecoration(
+          color:  Colors.blueAccent,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,9 +29,9 @@ class _AuthenticationState extends State<Authentication> {
             Container(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
+                style:const TextStyle(color: Colors.white),
                 controller: _emailField,
-                decoration: InputDecoration(
+                decoration:const InputDecoration(
                   hintText: "something@email.com",
                   hintStyle: TextStyle(
                     color: Colors.white,
@@ -47,10 +47,10 @@ class _AuthenticationState extends State<Authentication> {
             Container(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 controller: _passwordField,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "password",
                   hintStyle: TextStyle(
                     color: Colors.white,
